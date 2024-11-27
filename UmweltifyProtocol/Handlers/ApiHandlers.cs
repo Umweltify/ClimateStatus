@@ -60,11 +60,14 @@ public class ApiHandlers
             var fullUrl = _thingsAppPartnerAppRequestLogDateTimeUpdateUrl + queryString;
 
             // Launch the custom protocol asynchronously
+            await Task.Run(() =>
+            {
                 Process.Start(new ProcessStartInfo
                 {
                     FileName = fullUrl,
                     UseShellExecute = true // Necessary to handle custom protocols
                 });
+            });
         }
         catch (Exception ex)
         {

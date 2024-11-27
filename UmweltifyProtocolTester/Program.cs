@@ -7,4 +7,6 @@ var appSecret = "UBqP0haHzD4/vDj9Jb12/81wrFLA08J0W4Yx8LV/Mi0=";
 
 var res = await ClimateinProtocol.GetDeviceStatusAsync(appId, appSecret);
 
-Console.WriteLine($"This device is {(res.IsGreen? "Green" : "Not Green")}");
+Console.WriteLine($"This device is {(res.IsGreen? "Green" : "Not Green")}, {res.ClimateStatusModel.ToString()}");
+
+Console.ReadKey();
