@@ -939,4 +939,4 @@
   //}
 
 })();
-//# sourceMappingURL=bundle.js.map
+//# sourceMappingURL=ClimateStatus.js.map

@@ -7,7 +7,7 @@ import babel from '@rollup/plugin-babel';
 export default {
     input: 'src/index.js', // Entry point of your application
     output: {
-        file: 'bundle.js', // Output bundle file
+        file: 'ClimateStatus.js', // Output bundle file
         format: 'iife',    // Immediately Invoked Function Expression format
         name: 'MyModule',  // Global variable name for your module
         sourcemap: true,   // Generate a sourcemap

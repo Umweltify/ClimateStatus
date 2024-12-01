@@ -76,8 +76,8 @@ public class ApiHandlers
     }
 
 
-    private const string _umweltifyGetDeviceStatusUrl = @"https://localhost:7152/v1/PartnerAppProtocol/GetDeviceStatus";
-    //private const string _umweltifyGetDeviceStatusUrl = @"https://api.umweltify.com/v1/PartnerAppProtocol/GetDeviceStatus";
+    //private const string _umweltifyGetDeviceStatusUrl = @"https://localhost:7152/v1/PartnerAppProtocol/GetDeviceStatus";
+    private const string _umweltifyGetDeviceStatusUrl = @"https://api.umweltify.com/v1/PartnerAppProtocol/GetDeviceStatus";
     private const string _apiKeyName = "UMWELTIFY-API-KEY";
     private const string _apiKeyValue = "n1Sxz6ksSNj3BNnD3pU3AUDu0aSApStd";
     public static async Task<(bool IsGreen, ClimateStatusModel ClimateStatusModel)> GetDeviceStatusAsync(PartnerAppRequestLogModel requestModel)

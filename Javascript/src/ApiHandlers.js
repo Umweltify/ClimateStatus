@@ -61,7 +61,8 @@ const ApiHandlers = {
     },
 
     async getDeviceStatusByDeviceId(model, getDeviceStatusCallback) {
-        const apiUrl = "https://localhost:7152/v1/PartnerAppProtocol/GetDeviceStatusByDeviceId";
+        //const apiUrl = "https://localhost:7152/v1/PartnerAppProtocol/GetDeviceStatusByDeviceId";
+        const apiUrl = "https://api.umweltify.com/v1/PartnerAppProtocol/GetDeviceStatus";
         const apiKeyName = "UMWELTIFY-API-KEY";
         const apiKeyValue = "n1Sxz6ksSNj3BNnD3pU3AUDu0aSApStd";
 
