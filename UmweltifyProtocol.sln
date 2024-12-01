@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35506.116 d17.12
+VisualStudioVersion = 17.12.35506.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UmweltifyProtocol", "UmweltifyProtocol\UmweltifyProtocol.csproj", "{F1B21D83-70E7-4984-836C-1EB6AE5939B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows_C#", "UmweltifyProtocol\Windows_C#.csproj", "{F1B21D83-70E7-4984-836C-1EB6AE5939B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UmweltifyProtocolTester", "UmweltifyProtocolTester\UmweltifyProtocolTester.csproj", "{6DA68B96-824E-49AB-A076-E0543E60BC56}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows_C#_Tester", "UmweltifyProtocolTester\Windows_C#_Tester.csproj", "{6DA68B96-824E-49AB-A076-E0543E60BC56}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Javascript", "Javascript\Javascript.esproj", "{87974D08-D577-40C7-B549-C9F4B607D05C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,12 @@ Global
 		{6DA68B96-824E-49AB-A076-E0543E60BC56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DA68B96-824E-49AB-A076-E0543E60BC56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DA68B96-824E-49AB-A076-E0543E60BC56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87974D08-D577-40C7-B549-C9F4B607D05C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87974D08-D577-40C7-B549-C9F4B607D05C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87974D08-D577-40C7-B549-C9F4B607D05C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{87974D08-D577-40C7-B549-C9F4B607D05C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87974D08-D577-40C7-B549-C9F4B607D05C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87974D08-D577-40C7-B549-C9F4B607D05C}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

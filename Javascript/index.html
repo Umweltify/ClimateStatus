@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Library</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+    <!--<script type="module" src="src/index.js"></script>-->
+    <script type="module" src="bundle.js"></script>
+
+    <script>
+        function getDeviceStatusCallback(isGreen, climateStatusModel) {
+            document.getElementById('output').innerText =
+                `This device is ${isGreen ? "Green" : "Not Green"}, ${climateStatusModel}`;
+        }
+
+        async function runTest() {
+            const appId = "ba18497c-2c50-46d0-b68b-af5b01bd3769";
+            const appSecret = "UBqP0haHzD4/vDj9Jb12/81wrFLA08J0W4Yx8LV/Mi0=";
+
+            try {
+                await ClimateinProtocol.getDeviceStatus(appId, appSecret, getDeviceStatusCallback);        
+            } catch (error) {
+                document.getElementById('output').innerText = `Error: ${error.message}`;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Test the ClimateinProtocol Library</h1>
+    <button onclick="runTest()">Run Test</button>
+    <p id="output"></p>
+</body>
+</html>

@@ -8,20 +8,25 @@ using UmweltifyProtocol.HMAC;
 
 namespace UmweltifyProtocol
 {
-    public sealed class ClimateinProtocol
+    public delegate void GetClimateStatus(bool isGreen, ClimateStatusModel climateStatusModel);
+
+    public class ClimateinProtocol
     {
+        
+        public event GetClimateStatus GetClimateStatus;
+        protected virtual void OnGetClimateStatus(bool isGreen, ClimateStatusModel climateStatusModel)
+        {
+            GetClimateStatus handler = GetClimateStatus;
+            if (handler != null)
+            {
+                handler(isGreen, climateStatusModel);
+            }
+        }
+
         private const int MaxRetries = 3;
         private const int InitialDelayMilliseconds = 1000;
         private const int UpdateIntervalMilliseconds = 0; //5 * 60 * 1000;
-
-        private static readonly Lazy<ClimateinProtocol> _singleton = new(() => new ClimateinProtocol());
-        private static ClimateinProtocol Instance => _singleton.Value;
-
-        private ClimateinProtocol()
-        {
-            // Private constructor to prevent instantiation
-        }
-
+               
         /// <summary>
         /// Retrieves the environmental status of a device for a partner application.
         /// </summary>
@@ -29,7 +34,7 @@ namespace UmweltifyProtocol
         /// <param name="appSecret">The application secret.</param>
         /// <param name="cancellationToken">Token to cancel the operation.</param>
         /// <returns>A tuple containing a boolean indicating green status and a ClimateStatusModel.</returns>
-        public static async Task<(bool IsGreen, ClimateStatusModel ClimateStatusModel)> GetDeviceStatusAsync(
+        public async Task GetDeviceStatusAsync(
             string appId,
             string appSecret,
             CancellationToken cancellationToken = default)
@@ -38,19 +43,15 @@ namespace UmweltifyProtocol
 
             var model = GenerateModel(appId, appSecret, sessionId);
 
-            await Instance.RegisterPartnerAppRequestLogAsync(model, cancellationToken);
+            await RegisterPartnerAppRequestLogAsync(model, cancellationToken);
 
-            await Task.Delay(InitialDelayMilliseconds, cancellationToken);
-
-            var response = await Instance.RetrieveDeviceStatusAsync(model, cancellationToken);
+            _ = RetrieveDeviceStatusAsync(model, cancellationToken);
 
             // Schedule log updates in the background
             //_ = Instance.UpdateRequestLogDateTimeAsync(appId, appSecret, sessionId, cancellationToken);
-
-            return response;
         }
 
-        private static PartnerAppRequestLogModel GenerateModel(string appId, string appSecret, string sessionId)
+        private PartnerAppRequestLogModel GenerateModel(string appId, string appSecret, string sessionId)
         {
             var naonce = HmacHashing.GenerateNonce();
             var signature = HmacHashing.GenerateHmac(appId, appSecret, naonce);
@@ -83,7 +84,7 @@ namespace UmweltifyProtocol
             }
         }
 
-        private async Task<(bool IsGreen, ClimateStatusModel ClimateStatusModel)> RetrieveDeviceStatusAsync(
+        private async Task RetrieveDeviceStatusAsync(
             PartnerAppRequestLogModel model,
             CancellationToken cancellationToken)
         {
@@ -100,11 +101,12 @@ namespace UmweltifyProtocol
                 }
                 else
                 {
-                    return response;
+                    OnGetClimateStatus(response.IsGreen, response.ClimateStatusModel);
+                    return;
                 }
             }
 
-            return (false, ClimateStatusModel.Undefined);
+            OnGetClimateStatus(false, ClimateStatusModel.Undefined);
         }
     }
 }
